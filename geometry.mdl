@@ -7,6 +7,14 @@
 /* mhennig@inf.ed.ac.uk                               */
 /******************************************************/
 
+DEFINE_SURFACE_CLASSES
+{
+  transp_Glu
+  {
+    TRANSPARENT = Glu
+  }
+}
+
 /* the PSD with receptors */
 psd BOX {
   CORNERS = [-Rex/2,-Rex/2,-cleft/2], [Rex/2,Rex/2,cleft/2]
@@ -21,10 +29,10 @@ psd BOX {
   /*}*/
 
   /* allow diffusion in/out of PSD */
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = LEFT}*/
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = RIGHT}*/
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = FRONT}*/
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = BACK}*/
+  DEFINE_SURFACE_REGIONS
+  {
+    sr { INCLUDE_ELEMENTS = [LEFT, RIGHT, FRONT, BACK] }
+  }
 
 }
 
@@ -36,8 +44,10 @@ vesicle BOX {
 /* fusion pore */
 pore BOX {
   CORNERS = [-fpD/2,-fpD/2,cleft/2], [fpD/2,fpD/2,cleft/2+fpL]
-  /*TRANSPARENT { LIGAND = Glu ELEMENT = TOP }*/
-  /*TRANSPARENT { LIGAND = Glu ELEMENT = BOTTOM }*/
+  DEFINE_SURFACE_REGIONS
+  {
+    sr { INCLUDE_ELEMENTS = [TOP, BOTTOM] }
+  }
   SCALE = [pore_scale,pore_scale,1.0]
 }
 
@@ -55,9 +65,25 @@ synaptic_cleft_element BOX {
   /*}*/
 
   /* allow diffusion in/out of celft */
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = LEFT}*/
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = RIGHT}*/
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = FRONT}*/
-  /*TRANSPARENT {LIGAND = Glu  ELEMENT = BACK}*/
+  DEFINE_SURFACE_REGIONS
+  {
+    sr { INCLUDE_ELEMENTS = [LEFT, RIGHT, FRONT, BACK] }
+  }
+}
+
+MODIFY_SURFACE_REGIONS
+{
+  psd[sr]
+  {
+    SURFACE_CLASS = transp_Glu
+  }
+  pore[sr]
+  {
+    SURFACE_CLASS = transp_Glu
+  }
+  synaptic_cleft_element[sr]
+  {
+    SURFACE_CLASS = transp_Glu
+  }
 }
 
