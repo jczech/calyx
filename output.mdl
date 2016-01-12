@@ -1,0 +1,36 @@
+/******************************************************/
+/* A simple model of a single AZ at the calyx of Held */
+/*                                                    */
+/* Output of simulation results                       */
+/*                                                    */
+/* Matthias Hennig                                    */
+/* mhennig@inf.ed.ac.uk                               */
+/******************************************************/
+
+REACTION_DATA_OUTPUT {
+
+  /* step width of output */
+  STEP = 1.0*dt
+
+  /* count desensitisied receptors */
+  { COUNT[AMPAR.D1,WORLD,FOR_EACH_TIME_STEP] +
+    COUNT[AMPAR.D2,WORLD,FOR_EACH_TIME_STEP] + 
+    COUNT[AMPAR.D3,WORLD,FOR_EACH_TIME_STEP] + 
+    COUNT[AMPAR.D4,WORLD,FOR_EACH_TIME_STEP] } => "AMPAR_D_simid.dat"
+
+  /* count closed, unbound */
+  { COUNT[AMPAR.C0,WORLD,FOR_EACH_TIME_STEP] } => "AMPAR_C0_simid.dat"
+
+  /* count open receptors */
+  { COUNT[AMPAR.O1,WORLD,FOR_EACH_TIME_STEP] } => "AMPAR_O1_simid.dat"
+  { COUNT[AMPAR.O2,WORLD,FOR_EACH_TIME_STEP] } => "AMPAR_O2_simid.dat"
+  { COUNT[AMPAR.O3,WORLD,FOR_EACH_TIME_STEP] } => "AMPAR_O3_simid.dat"
+  { COUNT[AMPAR.O4,WORLD,FOR_EACH_TIME_STEP] } => "AMPARO4_simid.dat"
+
+  /* count glutamate receptors above central PSD */
+  { COUNT[Glu,coh.psd,FOR_EACH_TIME_STEP] } => "Glu_PSD_simid.dat"
+  /* count glutamate receptors above a peripheral PSD */
+  { COUNT[Glu,coh.psd2,FOR_EACH_TIME_STEP] } => "Glu_PSD2_simid.dat"
+
+}
+

@@ -1,0 +1,60 @@
+/******************************************************/
+/* A simple model of a single AZ at the calyx of Held */
+/*                                                    */
+/* Simulation parameters                              */
+/*                                                    */
+/* Matthias Hennig                                    */
+/* mhennig@inf.ed.ac.uk                               */
+/******************************************************/
+
+/* KINETICS *********************/
+
+/* factors to translate rate constants for temperature 25C -> 35C */
+tf  = 1.0                              /* AMPAR kinetics */
+tfd = 1.0                              /* diffusion */
+
+/* AMPA receptor rate constants */
+Rb  = 10e6 * tf
+Ru1 = 8e3 * tf
+Ro1 = 20e3 * tf
+Rc1 = 10e3 * tf
+Rd0 = 4e3 * tf
+Rd1 = 4e3 * tf
+Rr1 = 0.015e3 * tf
+Rd2 = 10e6 * tf
+Rr2 = 8e3 * tf
+
+/* glutamate diffusion */
+/* [cm^2/s], Franks et al., 2002 */
+D = tfd * 3.0e-6                       
+
+/* GEOMETRY *********************/
+
+/* vesicle diameter */
+/* [\mu m], Sätzler et al., 2002, assuming membrane thickness 6nm */
+/* 40nm => volume 133510nm^3 => box d=32nm */
+vDiam = 0.032                          
+
+/* fusion pore dimensions */
+fpD = 0.005                           
+fpL = 0.012                           /* approx 1.5 * membrane thickness */
+
+/* synaptic cleft */
+/* diameter of PSD in [\mu m], == area 0.1 \mu m^2, Sätzler et al., 2002  */
+Rex = 0.317                           
+/* separation in [\mu m] , volume 0.0028 \mu m^3, Sätzler et al., 2002 */
+cleft = 0.028                         
+
+/* assuming 80 AMPARs/AZ */
+AMPAR_number = 80
+/* extra-PSD AMPARs */
+AMPAR_number_far = 0
+/* the same expressed as density */
+AMPAR_density = 796
+AMPAR_density_far = 0
+
+/* number of glu molecules/vesicle */
+n = 6000
+
+/* glu transporters */
+GluT_density = 0                      /* no transporters in calyx reported (only glial) */

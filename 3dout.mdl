@@ -1,0 +1,50 @@
+/******************************************************/
+/* A simple model of a single AZ at the calyx of Held */
+/*                                                    */
+/* 3D output for DREAMM                               */
+/* This assumes that a directory dx/ exists where     */
+/* the results will be stored.                        */
+/*                                                    */
+/* Matthias Hennig                                    */
+/* mhennig@inf.ed.ac.uk                               */
+/******************************************************/
+
+
+
+VIZ_DATA_OUTPUT {
+
+  MODE = DX
+/*  VOXEL_IMAGE_MODE = YES */
+
+  ITERATION_FRAME_DATA { 
+    SURFACE_POSITIONS = [0]
+    SURFACE_STATES = [0]
+    EFFECTOR_POSITIONS = [0]
+    EFFECTOR_STATES = [[0 TO 1000 STEP 1]]
+    MOLECULE_POSITIONS = [[0 TO 1000 STEP 1]]
+  } 
+
+  MOLECULE_FILE_PREFIX = "dx/glu"
+
+  OBJECT_FILE_PREFIXES {
+    coh = "dx/cleft"
+  }
+
+  STATE_VALUES {
+    AMPAR.O1 = 1
+    AMPAR.O2 = 2
+    AMPAR.O3 = 3
+    AMPAR.O4 = 4
+    AMPAR.C0 = 5
+    AMPAR.C1 = 6
+    AMPAR.C2 = 7
+    AMPAR.C3 = 8
+    AMPAR.C4 = 9
+    AMPAR.D1 = 10
+    AMPAR.D2 = 11
+    AMPAR.D3 = 12
+    AMPAR.D4 = 13
+    Glu = 14
+  }
+
+}

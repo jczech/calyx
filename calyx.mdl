@@ -1,0 +1,120 @@
+/******************************************************/
+/* A simple model of a single AZ at the calyx of Held */
+/*                                                    */
+/* Main simulation script                             */
+/*                                                    */
+/* Matthias Hennig                                    */
+/* mhennig@inf.ed.ac.uk                               */
+/******************************************************/
+
+/* time step */
+dt = 1.0e-6
+
+/* number of iterations */
+it = 3000
+
+TIME_STEP = dt
+ITERATIONS = it
+EFFECTOR_GRID_DENSITY = 10000
+RADIAL_SUBDIVISIONS = 2^10
+RADIAL_DIRECTIONS = 2^14 /* FULLY_RANDOM would be 2^15 */
+
+/* this file contains the relative diameter of the fusion pore */
+/* it is constantly updated during the run time of the simulation */
+INCLUDE_FILE = "pore_scale"
+
+pore_scale = 1-EXP(-(abs_time/10)*0.1)
+
+CHECKPOINT_INFILE = "chkpt_pos"
+CHECKPOINT_OUTFILE = "chkpt_pos"
+CHECKPOINT_ITERATIONS = check_time
+
+/* load simulation parameters */
+INCLUDE_FILE = "parameterfile.mdl"
+
+/* SIMULATION *********************/
+
+INCLUDE_FILE = "effectors.mdl"
+INCLUDE_FILE = "geometry.mdl"
+
+/**********************************/
+
+/* the synapse, here one PSD */
+INSTANTIATE coh OBJECT {
+
+  /* relase site/point source of glutamate in the centre of the vesicle */
+  transmitter_release_site SPHERICAL_RELEASE_SITE {
+    LOCATION = [-Rex*vesicle_pos,0,cleft/2+fpL+vDiam/2]
+    LIGAND = Glu
+    NUMBER_TO_RELEASE = n
+    SITE_DIAMETER = 0.0
+  }
+
+  /* insert objects that constitute the synaptic cleft */
+  cleft1 OBJECT synaptic_cleft_element { TRANSLATE=[-3*Rex/2,Rex/2,0 ] }
+  cleft2 OBJECT synaptic_cleft_element { TRANSLATE=[-3*Rex/2,-3*Rex/2,0 ] }
+  cleft3 OBJECT synaptic_cleft_element { TRANSLATE=[-3*Rex/2,-Rex/2,0 ] }
+  cleft4 OBJECT synaptic_cleft_element { TRANSLATE=[-Rex/2,-3*Rex/2,0 ] }
+  cleft5 OBJECT synaptic_cleft_element { TRANSLATE=[-Rex/2,Rex/2,0 ] }
+  cleft6 OBJECT synaptic_cleft_element { TRANSLATE=[Rex/2,-3*Rex/2,0,0 ] }
+  cleft7 OBJECT synaptic_cleft_element { TRANSLATE=[Rex/2,Rex/2,0,0 ] }
+  cleft8 OBJECT synaptic_cleft_element { TRANSLATE=[Rex/2,-Rex/2,0,0 ] }
+
+  cleft9 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,Rex/2,0 ] }
+  cleft10 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,-3*Rex/2,0 ] }
+  cleft11 OBJECT synaptic_cleft_element { TRANSLATE=[3*Rex/2,-3*Rex/2,0,0 ] }
+  cleft12 OBJECT synaptic_cleft_element { TRANSLATE=[3*Rex/2,Rex/2,0,0 ] }
+  cleft13 OBJECT synaptic_cleft_element { TRANSLATE=[-3*Rex/2,3*Rex/2,0 ] }
+  cleft14 OBJECT synaptic_cleft_element { TRANSLATE=[-3*Rex/2,-5*Rex/2,0 ] }
+  cleft15 OBJECT synaptic_cleft_element { TRANSLATE=[Rex/2,3*Rex/2,0 ] }
+  cleft16 OBJECT synaptic_cleft_element { TRANSLATE=[Rex/2,-5*Rex/2,0 ] }
+  cleft17 OBJECT synaptic_cleft_element { TRANSLATE=[3*Rex/2,3*Rex/2,0 ] }
+  cleft18 OBJECT synaptic_cleft_element { TRANSLATE=[3*Rex/2,-5*Rex/2,0 ] }
+  cleft19 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,3*Rex/2,0 ] }
+  cleft20 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,-5*Rex/2,0 ] }
+
+  cleft25 OBJECT synaptic_cleft_element { 
+    SCALE=[2,9,1]
+    TRANSLATE=[-9*Rex/2,-9*Rex/2,0 ] 
+  }
+  cleft26 OBJECT synaptic_cleft_element { 
+    SCALE=[2,9,1]
+    TRANSLATE=[5*Rex/2,-9*Rex/2,0 ] 
+  }
+  cleft27 OBJECT synaptic_cleft_element { 
+    SCALE=[5,2,1]
+    TRANSLATE=[-5*Rex/2,-9*Rex/2,0 ] 
+  }
+  cleft28 OBJECT synaptic_cleft_element { 
+    SCALE=[5,2,1]
+    TRANSLATE=[-5*Rex/2,5*Rex/2,0 ] 
+  }
+
+  /* the postsynaptic densities */
+  psd OBJECT psd {}
+
+  /* if these are removed, only the central PSD is active */
+  psd2 OBJECT psd {TRANSLATE=[-2*Rex, 0 ,0 ] }
+  psd3 OBJECT psd {TRANSLATE=[2*Rex, 0 ,0 ] }
+  psd4 OBJECT psd {TRANSLATE=[0, -2*Rex ,0 ] }
+  psd5 OBJECT psd {TRANSLATE=[0, 2*Rex ,0 ] }
+
+/* These replace the four PSDs psd2-psd5 if only one PSD is to be simulated:
+  cleftp1 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,Rex/2,0 ] }
+  cleftp2 OBJECT synaptic_cleft_element { TRANSLATE=[3*Rex/2,Rex/2,0 ] }
+  cleftp3 OBJECT synaptic_cleft_element { TRANSLATE=[-1*Rex/2,-4*Rex/2,0 ] }
+  cleftp4 OBJECT synaptic_cleft_element { TRANSLATE=[-1*Rex/2,5*Rex/2,0 ] }
+*/
+
+
+  vesicle OBJECT vesicle {TRANSLATE=[-Rex*vesicle_pos, 0 ,0 ] }
+  pore OBJECT pore {TRANSLATE=[-Rex*vesicle_pos, 0 ,0 ] }
+
+}
+
+/* write simulation results to a file */
+INCLUDE_FILE = "outputfile.mdl"
+
+/* uncomment to create a movie of the simulation */
+/* INCLUDE_FILE = "3dout.mdl" */
+
