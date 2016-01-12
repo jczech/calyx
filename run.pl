@@ -35,7 +35,7 @@ $prg = "/home/mhennig/bin/mcell";
 
 # the gradual opening of the fusion pore is approximated by changing the diamater
 # every 5\mu s
-for ( $chk = 1; $chk <= 61; $chk++) {  
+for ( $chk = 1; $chk <= 1; $chk++) {  
 
   system $prg, "-seed $run", "calyx_@ARGV[0]\_@ARGV[1].mdl";
 

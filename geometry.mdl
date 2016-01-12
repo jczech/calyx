@@ -10,47 +10,37 @@
 /* the PSD with receptors */
 psd BOX {
   CORNERS = [-Rex/2,-Rex/2,-cleft/2], [Rex/2,Rex/2,cleft/2]
-  FULLY_CLOSED = YES
+  /*FULLY_CLOSED = YES*/
 
   /* AMPA receptors */
-  ADD_EFFECTOR {
-    STATE = AMPAR.C0
-    DENSITY = AMPAR_density
-    /*NUMBER = AMPAR_number*/
-    ELEMENT = BOTTOM
-    POLE_ORIENTATION = POSITIVE_BACK
-  }
-
-  /* glutamate transporters (not simulated here) */
-  /*
-  ADD_EFFECTOR {
-    STATE = GluT.T
-    DENSITY = GluT_density
-    ELEMENT = BOTTOM
-    POLE_ORIENTATION = POSITIVE_BACK
-  }
-  */
+  /*ADD_EFFECTOR {*/
+  /*  STATE = AMPAR.C0*/
+  /*  DENSITY = AMPAR_density*/
+  /*  [>NUMBER = AMPAR_number<]*/
+  /*  ELEMENT = BOTTOM*/
+  /*  POLE_ORIENTATION = POSITIVE_BACK*/
+  /*}*/
 
   /* allow diffusion in/out of PSD */
-  TRANSPARENT {LIGAND = Glu  ELEMENT = LEFT}
-  TRANSPARENT {LIGAND = Glu  ELEMENT = RIGHT}
-  TRANSPARENT {LIGAND = Glu  ELEMENT = FRONT}
-  TRANSPARENT {LIGAND = Glu  ELEMENT = BACK}
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = LEFT}*/
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = RIGHT}*/
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = FRONT}*/
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = BACK}*/
 
 }
 
 /* the vesicle */
 vesicle BOX {
   CORNERS = [-vDiam/2,-vDiam/2,cleft/2+fpL], [vDiam/2,vDiam/2,cleft/2+fpL+vDiam]
-  FULLY_CLOSED = YES
+  /*FULLY_CLOSED = YES*/
 }
 
 /* fusion pore */
 pore BOX {
   CORNERS = [-fpD/2,-fpD/2,cleft/2], [fpD/2,fpD/2,cleft/2+fpL]
-  FULLY_CLOSED = YES
-  TRANSPARENT { LIGAND = Glu ELEMENT = TOP }
-  TRANSPARENT { LIGAND = Glu ELEMENT = BOTTOM }
+  /*FULLY_CLOSED = YES*/
+  /*TRANSPARENT { LIGAND = Glu ELEMENT = TOP }*/
+  /*TRANSPARENT { LIGAND = Glu ELEMENT = BOTTOM }*/
   SCALE = [pore_scale,pore_scale,1.0]
 }
 
@@ -58,21 +48,21 @@ pore BOX {
 synaptic_cleft_element BOX {
   CORNERS = [0,0,-cleft/2], [Rex,Rex,cleft/2]
 
-  FULLY_CLOSED = YES
+  /*FULLY_CLOSED = YES*/
 
   /* AMPA receptors */
-  ADD_EFFECTOR {
-    STATE = AMPAR.C0
-    DENSITY = AMPAR_density_far
-    /*NUMBER = AMPAR_number_far*/
-    ELEMENT = BOTTOM
-    POLE_ORIENTATION = POSITIVE_BACK
-  }
+  /*ADD_EFFECTOR {*/
+  /*  STATE = AMPAR.C0*/
+  /*  DENSITY = AMPAR_density_far*/
+  /*  [>NUMBER = AMPAR_number_far<]*/
+  /*  ELEMENT = BOTTOM*/
+  /*  POLE_ORIENTATION = POSITIVE_BACK*/
+  /*}*/
 
   /* allow diffusion in/out of celft */
-  TRANSPARENT {LIGAND = Glu  ELEMENT = LEFT}
-  TRANSPARENT {LIGAND = Glu  ELEMENT = RIGHT}
-  TRANSPARENT {LIGAND = Glu  ELEMENT = FRONT}
-  TRANSPARENT {LIGAND = Glu  ELEMENT = BACK}
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = LEFT}*/
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = RIGHT}*/
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = FRONT}*/
+  /*TRANSPARENT {LIGAND = Glu  ELEMENT = BACK}*/
 }
 
