@@ -90,8 +90,14 @@ INSTANTIATE coh OBJECT {
   /*  TRANSLATE=[-5*Rex/2,5*Rex/2,0 ] */
   /*}*/
 
-  /*[> the postsynaptic densities <]*/
+  /* the postsynaptic densities */
   psd OBJECT psd {}
+
+  /* if these are removed, only the central PSD is active */
+  psd2 OBJECT psd {TRANSLATE=[-2*Rex, 0 ,0 ] }
+  psd3 OBJECT psd {TRANSLATE=[2*Rex, 0 ,0 ] }
+  psd4 OBJECT psd {TRANSLATE=[0, -2*Rex ,0 ] }
+  psd5 OBJECT psd {TRANSLATE=[0, 2*Rex ,0 ] }
 
   /* AMPA receptors */
   AMPAR.C0_rel RELEASE_SITE
@@ -101,11 +107,6 @@ INSTANTIATE coh OBJECT {
     DENSITY = AMPAR_density
   }
 
-  /*[> if these are removed, only the central PSD is active <]*/
-  /*psd2 OBJECT psd {TRANSLATE=[-2*Rex, 0 ,0 ] }*/
-  /*psd3 OBJECT psd {TRANSLATE=[2*Rex, 0 ,0 ] }*/
-  /*psd4 OBJECT psd {TRANSLATE=[0, -2*Rex ,0 ] }*/
-  /*psd5 OBJECT psd {TRANSLATE=[0, 2*Rex ,0 ] }*/
 
 /* These replace the four PSDs psd2-psd5 if only one PSD is to be simulated:
   cleftp1 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,Rex/2,0 ] }
