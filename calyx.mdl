@@ -99,15 +99,6 @@ INSTANTIATE coh OBJECT {
   psd4 OBJECT psd {TRANSLATE=[0, -2*Rex ,0 ] }
   psd5 OBJECT psd {TRANSLATE=[0, 2*Rex ,0 ] }
 
-  /* AMPA receptors */
-  AMPAR.C0_rel RELEASE_SITE
-  {
-    SHAPE = coh.psd[bottom]
-    MOLECULE = AMPAR_C0,
-    DENSITY = AMPAR_density
-  }
-
-
 /* These replace the four PSDs psd2-psd5 if only one PSD is to be simulated:
   cleftp1 OBJECT synaptic_cleft_element { TRANSLATE=[-5*Rex/2,Rex/2,0 ] }
   cleftp2 OBJECT synaptic_cleft_element { TRANSLATE=[3*Rex/2,Rex/2,0 ] }
@@ -127,3 +118,19 @@ INSTANTIATE coh OBJECT {
 /* uncomment to create a movie of the simulation */
 /* INCLUDE_FILE = "3dout.mdl" */
 
+VIZ_OUTPUT
+{
+  MODE = CELLBLENDER
+  FILENAME = "./viz_data/Scene"
+  MOLECULES
+  {
+    NAME_LIST {ALL_MOLECULES}
+    ITERATION_NUMBERS {ALL_DATA @ ALL_ITERATIONS}
+  }
+}
+
+REACTION_DATA_OUTPUT
+{
+  STEP=1e-05
+  {COUNT[AMPAR_C0,WORLD]}=> "./react_data/AMPAR_C0.WORLD.dat"
+}

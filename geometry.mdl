@@ -23,7 +23,10 @@ psd BOX {
   DEFINE_SURFACE_REGIONS
   {
     sr { INCLUDE_ELEMENTS = [LEFT, RIGHT, FRONT, BACK] }
-    bottom { INCLUDE_ELEMENTS = [BOTTOM] }
+    bottom { 
+      INCLUDE_ELEMENTS = [BOTTOM]
+      MOLECULE_DENSITY { AMPAR_C0, = AMPAR_density }
+    }
   }
 
 }
