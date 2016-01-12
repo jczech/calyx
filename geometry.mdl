@@ -10,7 +10,6 @@
 /* the PSD with receptors */
 psd BOX {
   CORNERS = [-Rex/2,-Rex/2,-cleft/2], [Rex/2,Rex/2,cleft/2]
-  /*FULLY_CLOSED = YES*/
 
   /* AMPA receptors */
   /*ADD_EFFECTOR {*/
@@ -32,13 +31,11 @@ psd BOX {
 /* the vesicle */
 vesicle BOX {
   CORNERS = [-vDiam/2,-vDiam/2,cleft/2+fpL], [vDiam/2,vDiam/2,cleft/2+fpL+vDiam]
-  /*FULLY_CLOSED = YES*/
 }
 
 /* fusion pore */
 pore BOX {
   CORNERS = [-fpD/2,-fpD/2,cleft/2], [fpD/2,fpD/2,cleft/2+fpL]
-  /*FULLY_CLOSED = YES*/
   /*TRANSPARENT { LIGAND = Glu ELEMENT = TOP }*/
   /*TRANSPARENT { LIGAND = Glu ELEMENT = BOTTOM }*/
   SCALE = [pore_scale,pore_scale,1.0]
@@ -47,8 +44,6 @@ pore BOX {
 /* template for a synaptic celft element */
 synaptic_cleft_element BOX {
   CORNERS = [0,0,-cleft/2], [Rex,Rex,cleft/2]
-
-  /*FULLY_CLOSED = YES*/
 
   /* AMPA receptors */
   /*ADD_EFFECTOR {*/
