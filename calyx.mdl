@@ -91,7 +91,15 @@ INSTANTIATE coh OBJECT {
   /*}*/
 
   /*[> the postsynaptic densities <]*/
-  /*psd OBJECT psd {}*/
+  psd OBJECT psd {}
+
+  /* AMPA receptors */
+  AMPAR.C0_rel RELEASE_SITE
+  {
+    SHAPE = coh.psd[bottom]
+    MOLECULE = AMPAR_C0,
+    DENSITY = AMPAR_density
+  }
 
   /*[> if these are removed, only the central PSD is active <]*/
   /*psd2 OBJECT psd {TRANSLATE=[-2*Rex, 0 ,0 ] }*/

@@ -19,19 +19,11 @@ DEFINE_SURFACE_CLASSES
 psd BOX {
   CORNERS = [-Rex/2,-Rex/2,-cleft/2], [Rex/2,Rex/2,cleft/2]
 
-  /* AMPA receptors */
-  /*ADD_EFFECTOR {*/
-  /*  STATE = AMPAR.C0*/
-  /*  DENSITY = AMPAR_density*/
-  /*  [>NUMBER = AMPAR_number<]*/
-  /*  ELEMENT = BOTTOM*/
-  /*  POLE_ORIENTATION = POSITIVE_BACK*/
-  /*}*/
-
   /* allow diffusion in/out of PSD */
   DEFINE_SURFACE_REGIONS
   {
     sr { INCLUDE_ELEMENTS = [LEFT, RIGHT, FRONT, BACK] }
+    bottom { INCLUDE_ELEMENTS = [BOTTOM] }
   }
 
 }
@@ -68,6 +60,7 @@ synaptic_cleft_element BOX {
   DEFINE_SURFACE_REGIONS
   {
     sr { INCLUDE_ELEMENTS = [LEFT, RIGHT, FRONT, BACK] }
+    bottom { INCLUDE_ELEMENTS = [BOTTOM] }
   }
 }
 
