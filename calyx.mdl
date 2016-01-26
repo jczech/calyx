@@ -34,7 +34,7 @@ INCLUDE_FILE = "parameterfile.mdl"
 
 /* SIMULATION *********************/
 
-INCLUDE_FILE = "effectors.mdl"
+INCLUDE_FILE = "molecules_rxns.mdl"
 INCLUDE_FILE = "geometry.mdl"
 
 /**********************************/
